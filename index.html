@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="payoo.png" type="image/x-icon">
+    <title>PayooMFS</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <main class="flex justify-center">
+        <div class="mockup-phone border-primary">
+            <div class="camera"></div>
+            <div class="display">
+              <div class="artboard artboard-demo phone-2">
+                <!-- login section  -->
+                <div class=" flex flex-col hero bg-base-200 min-h-screen">
+                    <div class="w-3/5 mt-12">
+                        <img src="payoo.png" alt="">
+                    </div>
+                    <div class="hero-content flex-col">
+                      <div class="card bg-base-100 w-full max-w-md shrink-0 shadow-2xl">
+                        
+                        <form class="card-body">
+                          <div class="form-control">
+                            <label class="label">
+                              <span class="label-text">Mobile Number</span>
+                            </label>
+                            <input id="mobile-number" type="text" placeholder="Enter your number" class="input input-bordered" required />
+                          </div>
+                          <div class="form-control">
+                            <label class="label">
+                              <span class="label-text">4 Digit Pin</span>
+                            </label>
+                            <input id="pin-number" type="password" placeholder="Enter 4 Digit Pin" class="input input-bordered" required />
+                            <label class="label">
+                              <a href="#" class="label-text-alt link link-hover">Forgot password?</a>
+                            </label>
+                          </div>
+                          <div class="form-control mt-6">
+                            <button id="login-btn" class="btn btn-success btn-outline">Login</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+
+              </div>
+            </div>
+          </div>
+    </main>
+
+
+    <script src="js/index.js"></script>
+  </body>
+</html>

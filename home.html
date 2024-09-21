@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="payoo.png" type="image/x-icon">
+    <title>Payoo Home Page</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css"
+    rel="stylesheet"
+    type="text/css"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center h-screen">
+    
+
+    <main class="flex items-center">
+ 
+        <div class="mockup-phone border-primary">
+            <div class="camera"></div> 
+            <div class="display">
+              <div class="artboard artboard-demo phone-2 bg-base-100 p-4">
+                <h3 class="text-2xl font-bold mt-2 mb-4">👋 Welcome to Payooo!</h3>
+
+                <div class="flex justify-between items-center gap-8">
+                    <div class="flex items-center space-x-2">
+                        <img src="payoo.png" alt="logo" class="w-6 h-6" /> <!-- Replace with actual logo path -->
+                        <div>
+                            
+                            <h2 class="text-lg font-bold">$<span id="balance">100</span></h2>
+                            <p class="text-sm text-gray-500">Available Balance</p>
+                        </div>
+                        
+                    </div>
+                    <button class="btn btn-outline border-primary btn-sm flex items-center space-x-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1m0-11V4" /></svg>
+                        <span><a href="index.html">Log Out</a> </span>
+                    </button>
+                </div>
+                
+                <div class="divider"></div>
+                <div class="grid grid-cols-3 gap-2 mb-6">
+                    <a href="#x" id="showAddMoney">
+                        <button id="add-btn" class="btn border-gray-400  w-full">Add Money</button>
+                    </a>
+                    <a href="#y" id="showCashOut">
+                        <button id="cashout-btn" class="btn border-gray-400  w-full">Cashout</button>
+                    </a>
+                    <button class="btn border-gray-400   w-full">Transfer Money</button>
+                    <button class="btn border-gray-400  w-full">Get Bonus</button>
+                    <button class="btn border-gray-400  w-full">Pay Bill</button>
+                    <a href="#z" id="showTransaction">
+                        <button id="transaction-btn" class="btn border-gray-400  w-full">Transactions</button>
+                    </a>
+                </div>
+                
+                <div id="alert-container"></div>
+                <!-- Add Money Section -->
+                <form id="addMoneyForm" class="text-center hidden ">
+                    <h4 class="text-lg font-bold mb-2">Add Money</h4>
+                    <hr class=" border-green-500 mb-4">
+                    <div class="form-control">
+                        
+                            <label class="label">
+                                <span class="label-text">Select A Bank</span>
+                            </label>
+                            <select id="bank" class="select select-bordered mb-2" required>
+                                <option disabled selected>Select bank</option>
+                                <option>Bank A</option>
+                                <option>Bank B</option>
+                                <option>Bank C</option>
+                            </select>
+                            
+                        <label class="label">
+                            <span class="label-text">Amount to Add</span>
+                        </label>
+                        <input id="amount" type="text" placeholder="Add Amount to add" class="input input-bordered mb-2" required />
+    
+                        <label class="label">
+                            <span class="label-text">Pin Number</span>
+                        </label>
+                        <input id="pin-number" type="password" placeholder="Enter 4 digit pin number" class="input input-bordered mb-4" required />
+                        <button id="money-btn" class="btn btn-success w-full">Add Money</button>
+                        
+                    </div>
+                </form>
+                <!-- cashout section  -->
+                <form id="cashOutForm" class="text-center hidden">
+                    <h4 class="text-lg font-bold mb-2">Cash Out</h4>
+                    <hr class=" border-red-400 mb-4">
+                    <div class="form-control">
+                        <div id="alert-container"></div>
+                        <label class="label">
+                            <span class="label-text">Select A Bank</span>
+                        </label>
+                        <select id="bank2" class="select select-bordered mb-2" required>
+                            <option disabled selected>Select bank</option>
+                            <option>Bank A</option>
+                            <option>Bank B</option>
+                            <option>Bank C</option>
+                        </select>
+                        <label class="label">
+                            <span class="label-text">Amount to Cashout</span>
+                        </label>
+                        <input id="cash-out-amount" type="text" placeholder="Add Amount to withdraw" class="input input-bordered mb-2" required />
+    
+                        <label class="label">
+                            <span class="label-text">Pin Number</span>
+                        </label>
+                        <input id="cashout-pin-number" type="password" placeholder="Enter 4 digit pin number" class="input input-bordered mb-4" required />
+                        <button id="cash-out-btn" class="btn btn-error w-full">Cash Out</button>
+                    </div>
+                </form>
+
+                <!-- Transaction History Section -->
+                <div id="transaction-history" class="text-center  overflow-y-auto h-72 rounded-lg p-4 hidden">
+                    <h4 class="text-lg font-bold mb-2">Transaction History</h4>
+                    <hr class="border-yellow-400 mb-4">
+                
+
+                </div>
+
+                
+
+              </div>
+            </div>
+        </div>
+    </main>
+    <script src="js/home.js"></script>
+    <script src="js/toogle.js"></script>
+    <script src="js/cashout.js"></script>
+
+    <script>
+        window.onload = function () {
+            let storedBalance = localStorage.getItem('balance');
+            let storedTransactions = localStorage.getItem('transactions');
+            
+            if (storedBalance) {
+                document.getElementById('balance').innerText = storedBalance;
+            }
+            if (storedTransactions) {
+            document.getElementById('transaction-history').innerHTML = storedTransactions;
+            }
+        }
+
+    function showAlert(message) {
+    const alertContainer = document.getElementById('alert-container');
+    alertContainer.innerHTML = `
+        <div role="alert" class="alert alert-error">
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 shrink-0 stroke-current"
+            fill="none"
+            viewBox="0 0 24 24">
+            <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span>${message}</span>
+        </div>
+    `;
+    document.getElementById('bank').classList.add('hidden');
+    document.getElementById('bank2').classList.add('hidden');
+    
+    setTimeout(() => {
+        
+        alertContainer.innerHTML = '';
+        document.getElementById('bank').classList.remove('hidden');
+        document.getElementById('bank2').classList.remove('hidden');
+    }, 2800);
+    }
+
+    
+    </script>
+    
+</body>
+</html>
